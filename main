@@ -1,0 +1,20 @@
+Compilation
+gcc -g file.c
+
+Breakpoints
+break line_number
+break func_name
+
+Running
+run
+
+Printing values
+print {variable} / p {variable}
+
+Proceed
+c/continue : untill the next break point
+n/next : next line
+s/step : next step
+
+listing
+l/list
