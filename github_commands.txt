@@ -6,3 +6,16 @@
 5. git push origin master
 Now you can work with it just like any other github repo. To pull in patches from upstream, 
 simply run git pull upstream master && git push origin master.
+
+########################### Create a new repository on the command line ###########################
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/YashikaVerma156/Randomized_cache_hierarchy_work.git
+git push -u origin main
+
+######################## Push an existing repository from the command line##########################
+git remote add origin https://github.com/YashikaVerma156/Randomized_cache_hierarchy_work.git
+git branch -M main
+git push -u origin main
