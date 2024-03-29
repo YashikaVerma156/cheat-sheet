@@ -1,0 +1,33 @@
+# Calling a function with arguments in inline assembly.
+
+### Version 1
+
+#include <stdio.h>
+
+void prin(unsigned long int ptr, int fd)
+{
+    printf( "%d %ld \n",fd, ptr);
+}
+
+int main() {
+
+    int fd = 5;
+    long int arr[2]={1, 2};
+    long int * ptr = arr;
+    //printf("%ld \n",ptr);
+
+    // Syntax format AT&T: mov src, destination.
+    // On x86-64 UNIX systems, including Linux, the first six parameters go into rdi, rsi, rdx, rcx, r8, and r9. rcx, rdx, r8, r9 not tested.
+    // rax: 64 bit, eax: 32 bit
+    asm volatile("mov %0, %%eax;"   // Move fd to %eax (2nd argument), as fd is int, and int(32-bit) can not be directly assigned to rsi(64 bit).
+                "mov %%rax, %%rsi;" // Move %rax to %rsi.
+                "mov %1, %%rdi;"    // Move ptr to %rdi (1st argument).
+                "call prin;"      
+                :
+                : "r" (fd), "r" (ptr)
+                : "rdi","rax"
+                );
+    //prin(ptr, fd);
+    return 0;
+}
+~   
